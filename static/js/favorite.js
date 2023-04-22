@@ -8,7 +8,6 @@ $(document).ready(function() {
     .then((response) => {
         document.getElementById(pk_photo).innerText = 'Удалить из избранного'
         $(this).removeClass('to-favorite').addClass('from-favorite');
-        $(this).innertext = 'jjj';
         return response;
         })
     });
