@@ -1,2 +1,2 @@
-from .models import Gallery
+from .models import Gallery, Favorite
 

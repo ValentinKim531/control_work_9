@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from webapp.models import Gallery
+from webapp.models import Gallery, Favorite
 
 
 class GalleryAdmin(admin.ModelAdmin):
@@ -8,6 +8,11 @@ class GalleryAdmin(admin.ModelAdmin):
     ordering = ['created_at']
 
 
+class FavoriteAdmin(admin.ModelAdmin):
+    list_display = ['photo', 'user']
+
+
 admin.site.register(Gallery, GalleryAdmin)
+admin.site.register(Favorite, FavoriteAdmin)
 
 

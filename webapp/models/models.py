@@ -25,3 +25,27 @@ class Gallery(models.Model):
         ordering = ['-created_at']
 
 
+class Favorite(models.Model):
+    user = models.ForeignKey(
+        to=get_user_model(),
+        null=False,
+        blank=False,
+        verbose_name='Автор',
+        related_name='favorites',
+        on_delete=models.CASCADE
+    )
+    photo = models.ForeignKey(
+        to=Gallery,
+        related_name='photos',
+        null=False,
+        blank=False,
+        verbose_name='Фото',
+        on_delete=models.CASCADE
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Время создания"
+    )
+
+    class Meta:
+        ordering = ['-created_at']
