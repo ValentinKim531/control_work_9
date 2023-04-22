@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block title %}
+    Просмотр детальной страницы 
+{% endblock %}
+
+{% block content %}
+
+<form action="" method='POST'>
+        {% csrf_token %}
+        {%  bootstrap_form form %}
+        <input class="btn btn-secondary" type="submit" value="Сохранить">
+</form>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+Редактировать: <a href="{% url 'account_update' account.username %}">{{ account.username }}</a><br>
+Автор:{{ account.name }}<br>
+Логин:{{ account.username }}<br>
+Телефон:{{ account.phone }} <br>
+email:{{ account.email }} <br>
+{% for photo in account.favorited_photos.all %}
+    <div class="d-flex">
+        <div>
+    <img class="box_img border border-2 img" src="{{photo.photo.url}}" alt="image" width="150"><br>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

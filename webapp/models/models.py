@@ -35,7 +35,7 @@ class Favorite(models.Model):
         on_delete=models.CASCADE
     )
     photo = models.ForeignKey(
-        to=Gallery,
+        to='webapp.Gallery',
         related_name='photos',
         null=False,
         blank=False,

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     "webapp",
-    # "accounts",
+    "accounts",
     # "rest_framework",
     # "rest_framework.authtoken",
     # "api",
@@ -142,6 +142,8 @@ LOGIN_URL = 'login'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'accounts.Account'
 
 INTERNAL_IPS = [
     "127.0.0.1",
