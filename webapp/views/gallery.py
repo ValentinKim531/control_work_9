@@ -2,7 +2,7 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from webapp.forms import GalleryForm, GalleryUpdateForm
 from webapp.models import Gallery
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class PhotoDetailView(DetailView):
     template_name = 'photo_detail.html'
@@ -31,7 +31,7 @@ class PhotoCreateView(CreateView):
         return super().form_valid(form)
 
 
-class PhotoUpdateView(UpdateView):
+class PhotoUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'photo_update.html'
     model = Gallery
     form_class = GalleryUpdateForm
@@ -40,11 +40,20 @@ class PhotoUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('photo_detail', kwargs={'pk': self.object.pk})
 
+    def dispatch(self, request, *args, **kwargs):
+        if not (self.get_object().author == request.user or request.user.groups.filter(name='photo_update').exists()):
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
 
-class PhotoDeleteView(DeleteView):
+
+class PhotoDeleteView(LoginRequiredMixin, DeleteView):
     model = Gallery
     success_url = reverse_lazy('index')
 
+    def dispatch(self, request, *args, **kwargs):
+        if not (self.get_object().author == request.user or request.user.groups.filter(name='photo_delete').exists()):
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
 
 
 

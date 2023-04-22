@@ -5,11 +5,13 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
+<div>
 Редактировать: <a href="{% url 'account_update' account.username %}">{{ account.username }}</a><br>
-Автор:{{ account.name }}<br>
-Логин:{{ account.username }}<br>
-Телефон:{{ account.phone }} <br>
-email:{{ account.email }} <br>
+<b>Автор:</b>{{ account.name }}<br>
+<b>Логин:</b>{{ account.username }}<br>
+<b>Телефон:</b>{{ account.phone }} <br>
+<b>email:</b>{{ account.email }} <br>
+</div>
 {% for photo in account.favorited_photos.all %}
     <div class="d-flex">
         <div>
