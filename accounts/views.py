@@ -30,7 +30,6 @@ class LoginView(TemplateView):
             return redirect('login')
 
         login(request, user)
-
         return redirect('index')
 
 
@@ -68,7 +67,6 @@ class AccountUpdateView(UpdateView):
     template_name = 'account_update.html'
     model = get_user_model()
     form_class = AccountUpdateForm
-
 
     def get_object(self, queryset=None):
         return get_object_or_404(Account, username=self.kwargs.get('slug'))
